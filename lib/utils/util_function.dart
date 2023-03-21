@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class UtilFunction {
+class UtilFunctions {
 //-----------------Navigator Function-----------------
-  static void navigator(BuildContext context, Widget widget) {
+  static void navigateTo(BuildContext context, Widget widget) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
   }
 }
