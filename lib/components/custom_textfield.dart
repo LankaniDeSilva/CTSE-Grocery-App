@@ -6,12 +6,12 @@ class CustomTextField extends StatelessWidget {
     Key? key,
     required this.hintText,
     this.isObscure = false,
-    required this.controller,
+    this.controller,
   }) : super(key: key);
 
   final String hintText;
   final bool isObscure;
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,6 @@ class CustomTextField extends StatelessWidget {
             offset: const Offset(0, 5),
             color: AppColors.kAsh.withOpacity(0.8),
             blurRadius: 5.0,
-            // spreadRadius: 2.0,
           ),
         ],
       ),
@@ -33,7 +32,6 @@ class CustomTextField extends StatelessWidget {
         obscureText: isObscure,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
-          // labelText: widget.labelText,
           hintText: hintText,
           hintStyle: const TextStyle(color: AppColors.kAsh),
           enabledBorder: OutlineInputBorder(
@@ -42,7 +40,7 @@ class CustomTextField extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(2),
-            borderSide: const BorderSide(color: AppColors.KRed),
+            borderSide: const BorderSide(color: AppColors.kRed),
           ),
         ),
       ),
