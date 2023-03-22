@@ -1,9 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:grocery_app/provider/auth_provider.dart';
-import 'package:grocery_app/provider/login_provider.dart';
-import 'package:grocery_app/provider/signup_provider.dart';
-import 'package:grocery_app/provider/user_provider.dart';
+import 'package:grocery_app/provider/auth/auth_provider.dart';
+import 'package:grocery_app/provider/auth/login_provider.dart';
+import 'package:grocery_app/provider/auth/signup_provider.dart';
+import 'package:grocery_app/provider/auth/user_provider.dart';
+import 'package:grocery_app/provider/product/product_provider.dart';
 import 'package:grocery_app/screens/Splash/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
@@ -21,6 +22,7 @@ void main() async {
       ChangeNotifierProvider(create: (context) => UserProvider()),
       ChangeNotifierProvider(create: (context) => SignupProvider()),
       ChangeNotifierProvider(create: (context) => LoginProvider()),
+      ChangeNotifierProvider(create: (context) => ProductProvider()),
     ],
     child: const MyApp(),
   ));
