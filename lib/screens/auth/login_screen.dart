@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/provider/login_provider.dart';
+import 'package:grocery_app/provider/auth/login_provider.dart';
 import 'package:grocery_app/screens/auth/signup_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../components/custom_button.dart';
 import '../../components/custom_text.dart';
 import '../../components/custom_textfield.dart';
-import '../../provider/auth_provider.dart';
+import '../../provider/auth/auth_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/assets_constants.dart';
 import '../../utils/util_function.dart';
@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 26),
                   CustomButton(
                     onTap: () {
-                      Provider.of<LoginProvider>(context).startLogin(context);
+                      Provider.of<LoginProvider>(context, listen: false).startLogin(context);
                     },
                     text: 'Login',
                   ),

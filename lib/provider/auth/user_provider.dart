@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:grocery_app/provider/product/product_provider.dart';
 import 'package:grocery_app/screens/auth/login_screen.dart';
 import 'package:grocery_app/services/auth_services.dart';
 import 'package:grocery_app/utils/util_function.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
-import '../models/objects.dart';
-import '../screens/home/main_screen.dart';
+import '../../models/objects.dart';
+import '../../screens/main/home/home.dart';
 
 class UserProvider extends ChangeNotifier {
   //---------User Model
@@ -50,13 +52,16 @@ class UserProvider extends ChangeNotifier {
       if (user == null) {
         Logger().i("User signed out !");
 
-        UtilFunctions.navigateTo(context, const LoginScreen());
+        UtilFunctions.navigate(context, const LoginScreen());
       } else {
         Logger().i("User is signed in!");
         await fetchUser(user.uid);
 
         // ignore: use_build_context_synchronously
-        UtilFunctions.navigateTo(context, const MainScreen());
+        Provider.of<ProductProvider>(context, listen: false).fetchProducts();
+
+        // ignore: use_build_context_synchronously
+        UtilFunctions.navigate(context, const HomeScreen());
       }
     });
   }

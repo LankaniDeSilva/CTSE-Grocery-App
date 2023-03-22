@@ -21,3 +21,20 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'img': instance.img,
       'token': instance.token,
     };
+
+ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
+      json['productId'] as String,
+      json['productName'] as String,
+      json['description'] as String,
+      (json['price'] as num).toDouble(),
+      json['image'] as String,
+    );
+
+Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
+    <String, dynamic>{
+      'productId': instance.productId,
+      'productName': instance.productName,
+      'description': instance.desc,
+      'price': instance.price,
+      'image': instance.image,
+    };

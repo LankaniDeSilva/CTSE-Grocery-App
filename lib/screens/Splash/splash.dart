@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:grocery_app/provider/user_provider.dart';
+import 'package:grocery_app/provider/auth/user_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../components/custom_text.dart';
