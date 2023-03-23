@@ -7,7 +7,9 @@ import 'package:provider/provider.dart';
 import '../../../../../utils/app_colors.dart';
 import '../../../../components/custom_text.dart';
 import '../../../../models/objects.dart';
+import '../../../../provider/cart/cart_provider.dart';
 import '../../../../provider/product/product_provider.dart';
+import '../../../product_details/product_details.dart';
 
 class ProductGrid extends StatelessWidget {
   const ProductGrid({
@@ -53,14 +55,14 @@ class ProductTile extends StatelessWidget {
     return InkWell(
       onTap: () {
         //---set the selected product model before navigating to the product details screen
-        // Provider.of<ProductProvider>(context, listen: false)
-        //     .setProduct(productModel);
+        Provider.of<ProductProvider>(context, listen: false)
+            .setProduct(productModel);
 
         // //------clear the product counter before go to the details screen
-        // Provider.of<CartProvider>(context, listen: false).clearCounter();
+        Provider.of<CartProvider>(context, listen: false).clearCounter();
 
         //----------navigate to product details screen
-        // UtilFunctions.navigateTo(context, const ProductDetails());
+        UtilFunctions.navigateTo(context, const ProductDetails());
       },
       child: Container(
         decoration: BoxDecoration(
@@ -68,7 +70,7 @@ class ProductTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
           image: DecorationImage(
             image: NetworkImage(
-              productModel.image!,
+              productModel.image,
             ),
             fit: BoxFit.cover,
           ),
@@ -77,26 +79,26 @@ class ProductTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Consumer<ProductProvider>(
-            //   builder: (context, value, child) {
-            //     return InkWell(
-            //       onTap: () {
-            //         // value.initAddtoFavourite(productModel, context);
-            //       },
-            //       child: Container(
-            //         margin: const EdgeInsets.only(top: 8.0, right: 8.0),
-            //         padding: const EdgeInsets.all(8.0),
-            //         decoration: BoxDecoration(
-            //           color: value.favproducts.contains(productModel)
-            //               ? AppColors.kRed
-            //               : AppColors.kWhite,
-            //           shape: BoxShape.circle,
-            //         ),
-            //         child: SvgPicture.asset(AssetsConstants.favouriteIcon),
-            //       ),
-            //     );
-            //   },
-            // ),
+            Consumer<ProductProvider>(
+              builder: (context, value, child) {
+                return InkWell(
+                  onTap: () {
+                    value.initAddtoFavourite(productModel, context);
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 8.0, right: 8.0),
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      color: value.favproducts.contains(productModel)
+                          ? AppColors.kRed
+                          : AppColors.kWhite,
+                      shape: BoxShape.circle,
+                    ),
+                    child: SvgPicture.asset(AssetsConstants.favouriteIcon),
+                  ),
+                );
+              },
+            ),
             Container(
               height: 38.0,
               padding: const EdgeInsets.symmetric(horizontal: 9.0),
