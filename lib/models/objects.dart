@@ -7,3 +7,4 @@ part 'objects.g.dart';
 part 'user.dart';
 part 'product.dart';
 part 'cart.dart';
+part 'order.dart';

@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:grocery_app/provider/cart/cart_provider.dart';
+import 'package:grocery_app/screens/main/cart/cart_screen.dart';
 import 'package:grocery_app/utils/util_function.dart';
 import 'package:provider/provider.dart';
 
@@ -23,9 +24,10 @@ class CartButtonWidget extends StatelessWidget {
           text: value.getCartTotalItemCount.toString(),
           color: AppColors.kWhite,
         ),
-        child:
-            IconButton(icon: const Icon(Icons.shopping_cart), onPressed: () {
-              // UtilFunctions.navigateTo(context, widget)
+        child: IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () {
+              UtilFunctions.navigateTo(context, const CartScreen());
             }),
       );
     }));
