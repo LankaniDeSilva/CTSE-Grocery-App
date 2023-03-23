@@ -38,3 +38,19 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'price': instance.price,
       'image': instance.image,
     };
+
+CartItemModel _$CartItemModelFromJson(Map<String, dynamic> json) =>
+    CartItemModel(
+      cartId: json['cartId'] as String,
+      qty: json['qty'] as int,
+      subTotal: (json['subTotal'] as num).toDouble(),
+      model: ProductModel.fromJson(json['model'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$CartItemModelToJson(CartItemModel instance) =>
+    <String, dynamic>{
+      'cartId': instance.cartId,
+      'qty': instance.qty,
+      'subTotal': instance.subTotal,
+      'model': instance.model.toJson(),
+    };
