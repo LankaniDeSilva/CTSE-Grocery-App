@@ -52,7 +52,8 @@ class OrderRepository {
       list.add(items[i].toJson());
     }
     return orders
-        .doc(docid).set({
+        .doc(docid)
+        .set({
           'id': docid,
           'user': user.toJson(),
           'total': total,
@@ -71,13 +72,27 @@ class OrderRepository {
           "Order deleted successfully",
           type: AnimatedSnackBarType.success,
         ).show(context);
-        
-      // ignore: invalid_return_type_for_catch_error
+
+        // ignore: invalid_return_type_for_catch_error
       }).catchError((error) => Logger().e(error));
     } catch (e) {
       Logger().e(e);
       return null;
     }
   }
-}
 
+  Future<void> updateOrder(
+      String orderId, BuildContext context) {
+    return orders
+        .doc(orderId)
+        .update({'orderState': 'Urgent'})
+        .then((value) => {
+              AnimatedSnackBar.material(
+                "Order Updated successfully",
+                type: AnimatedSnackBarType.success,
+              ).show(context)
+            })
+        // ignore: invalid_return_type_for_catch_error
+        .catchError((error) => Logger().e(error.toString()));
+  }
+}
