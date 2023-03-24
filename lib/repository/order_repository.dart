@@ -1,4 +1,6 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
 import '../models/objects.dart';
@@ -50,7 +52,7 @@ class OrderRepository {
       list.add(items[i].toJson());
     }
     return orders
-        .add({
+        .doc(docid).set({
           'id': docid,
           'user': user.toJson(),
           'total': total,
@@ -60,4 +62,22 @@ class OrderRepository {
         .then((value) => Logger().i("Order data Added"))
         .catchError((error) => Logger().e("Failed to add order: $error"));
   }
+
+  Future<void>? deleteOrder(String orderid, BuildContext context) {
+    try {
+      Logger().e(orderid);
+      return orders.doc(orderid).delete().then((_) {
+        AnimatedSnackBar.material(
+          "Order deleted successfully",
+          type: AnimatedSnackBarType.success,
+        ).show(context);
+        
+      // ignore: invalid_return_type_for_catch_error
+      }).catchError((error) => Logger().e(error));
+    } catch (e) {
+      Logger().e(e);
+      return null;
+    }
+  }
 }
+

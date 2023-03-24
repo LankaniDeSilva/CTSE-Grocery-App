@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:grocery_app/provider/order/order_provider.dart';
 import 'package:grocery_app/provider/product/product_provider.dart';
 import 'package:grocery_app/screens/auth/login_screen.dart';
+import 'package:grocery_app/screens/main_screen.dart';
 import 'package:grocery_app/services/auth_services.dart';
 import 'package:grocery_app/utils/util_function.dart';
 import 'package:logger/logger.dart';
@@ -52,7 +54,7 @@ class UserProvider extends ChangeNotifier {
       if (user == null) {
         Logger().i("User signed out !");
 
-        UtilFunctions.navigate(context, const LoginScreen());
+        UtilFunctions.navigateTo(context, const LoginScreen());
       } else {
         Logger().i("User is signed in!");
         await fetchUser(user.uid);
@@ -61,7 +63,10 @@ class UserProvider extends ChangeNotifier {
         Provider.of<ProductProvider>(context, listen: false).fetchProducts();
 
         // ignore: use_build_context_synchronously
-        UtilFunctions.navigate(context, const HomeScreen());
+        Provider.of<OrderProvider>(context, listen: false).fetchOrders(user.uid);
+
+        // ignore: use_build_context_synchronously
+        UtilFunctions.navigate(context, const MainScreen());
       }
     });
   }

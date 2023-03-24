@@ -3,8 +3,10 @@ part of 'objects.dart';
 @JsonSerializable(explicitToJson: true)
 class OrderModel {
   final String id;
+  @JsonKey(name: "user")
   UserModel userModel;
   double total;
+  @JsonKey(name: "item")
   List<CartItemModel> items;
   String orderState;
 
