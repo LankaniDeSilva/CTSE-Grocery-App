@@ -1,10 +1,13 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_app/repository/order_repository.dart';
+import 'package:grocery_app/utils/util_function.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/objects.dart';
+import '../../screens/main/cart/cart_screen.dart';
+import '../../screens/main_screen.dart';
 import '../auth/user_provider.dart';
 import '../cart/cart_provider.dart';
 
@@ -50,6 +53,21 @@ class OrderProvider extends ChangeNotifier {
 
           //-clear the cart after created
           Provider.of<CartProvider>(context, listen: false).clearCart();
+
+          //--show a dialog box when the order is successfully created
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) {
+              return DialogBoxContainer(
+                onTap: () {
+                  //---start fetching orders before going to order list
+                  fetchOrders(user.uid);
+                  UtilFunctions.navigate(context, const MainScreen());
+                },
+              );
+            },
+          );
         });
       } else {
         AnimatedSnackBar.material(
@@ -86,6 +104,17 @@ class OrderProvider extends ChangeNotifier {
       Logger().e(e);
       //-stop the loader
       setLoading(false);
+    }
+  }
+
+  //REMOVE ORDER
+  Future<void> removeOrder(String orderid, BuildContext context, String uid) async {
+    try {
+      await _orderReository.deleteOrder(orderid, context);
+      fetchOrders(uid);
+      notifyListeners();
+    } catch (e) {
+      Logger().e(e);
     }
   }
 }
