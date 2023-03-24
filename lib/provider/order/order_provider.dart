@@ -26,6 +26,12 @@ class OrderProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  //Controller for status
+  final _statusController = TextEditingController();
+
+     //----getter for status controller
+  TextEditingController get statusController => _statusController;
+
   //------start creating the order
   Future<void> createOrder(BuildContext context) async {
     try {
@@ -114,6 +120,17 @@ class OrderProvider extends ChangeNotifier {
       fetchOrders(uid);
       notifyListeners();
     } catch (e) {
+      Logger().e(e);
+    }
+  }
+
+  Future<void> updateOrder(String orderId, BuildContext context, String uid ) async {
+    try{
+      await _orderReository.updateOrder(orderId, context);
+      fetchOrders(uid);
+      notifyListeners();
+    }
+    catch (e) {
       Logger().e(e);
     }
   }

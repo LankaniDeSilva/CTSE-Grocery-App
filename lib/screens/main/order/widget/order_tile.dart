@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:grocery_app/screens/product_details/product_details.dart';
 import 'package:provider/provider.dart';
@@ -10,13 +9,21 @@ import '../../../../utils/app_colors.dart';
 import '../../../../utils/size_config.dart';
 import '../../../../utils/util_function.dart';
 
-class OrderTile extends StatelessWidget {
-  const OrderTile({super.key, required this.index,
-    required this.model,});
+class OrderTile extends StatefulWidget {
+  const OrderTile({
+    super.key,
+    required this.index,
+    required this.model,
+  });
 
   final int index;
   final OrderModel model;
-  
+
+  @override
+  State<OrderTile> createState() => _OrderTileState();
+}
+
+class _OrderTileState extends State<OrderTile> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -48,7 +55,7 @@ class OrderTile extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: Image.network(
-                    model.items.first.model.image,
+                    widget.model.items.first.model.image,
                     width: 70,
                     height: 70,
                     fit: BoxFit.fill,
@@ -60,14 +67,14 @@ class OrderTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: 'Order No $index',
+                      text: 'Order No ${widget.index}',
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                     ),
                     const SizedBox(height: 10),
                     CustomText(
                       text:
-                          "${model.items.first.model.productName} x ${model.items.first.model.price}",
+                          "${widget.model.items.first.model.productName} x ${widget.model.items.first.model.price}",
                       fontSize: 15,
                     ),
                   ],
@@ -85,22 +92,50 @@ class OrderTile extends StatelessWidget {
                     color: AppColors.primaryColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: CustomText(
-                    text: model.orderState,
-                    color: AppColors.kWhite,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600,
+                  child: InkWell(
+                    onTap: () {
+                      AlertDialog alert = AlertDialog(
+                        title: const Text("Do you need an urgent order?"),
+                        actions: [
+                          ElevatedButton(
+                            onPressed: (() => Provider.of<OrderProvider>(
+                                    context,
+                                    listen: false)
+                                .updateOrder(widget.model.id, context, widget.model.userModel.uid)),
+                            child: const Text("Urgent Order"),
+                          ),
+                          ElevatedButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text("Cancel"),
+                          ),
+                        ],
+                      );
+
+                      // show the dialog
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return alert;
+                          });
+                    },
+                    child: CustomText(
+                      text: widget.model.orderState,
+                      color: AppColors.kWhite,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
                 CustomText(
-                  text: 'Total Rs.${model.total}0',
+                  text: 'Total Rs.${widget.model.total}0',
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
                 ),
                 InkWell(
-                  onTap: () =>
-                      Provider.of<OrderProvider>(context, listen: false)
-                          .removeOrder(model.id, context, model.userModel.uid),
+                  onTap: () => Provider.of<OrderProvider>(context,
+                          listen: false)
+                      .removeOrder(
+                          widget.model.id, context, widget.model.userModel.uid),
                   child: const Icon(
                     Icons.close,
                     color: AppColors.kRed,
