@@ -64,7 +64,7 @@ class FeedbackRepository {
           .doc(id)
           .delete()
           .then((_) => AnimatedSnackBar.material(
-                "Feedback is successfully deleted",
+                "Feedback is successfully delete",
                 type: AnimatedSnackBarType.success,
               ).show(context))
           .catchError((error) => Logger().e(error));
