@@ -8,3 +8,4 @@ part 'user.dart';
 part 'product.dart';
 part 'cart.dart';
 part 'order.dart';
+part 'feedback.dart';

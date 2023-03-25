@@ -1,13 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grocery_app/utils/assets_constants.dart';
 import 'package:logger/logger.dart';
 
 import '../models/objects.dart';
 
 class ProductRepository {
-  //------Firebase auth instance
-  final FirebaseAuth auth = FirebaseAuth.instance;
 
   //-- create the product collection
   CollectionReference products =

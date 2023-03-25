@@ -12,8 +12,6 @@ class AssetsConstants {
       'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png';
 
   //assets icons
-  static const googleIcon = '${iconPath}google-icons.svg';
-  static const fbIcon = '${iconPath}fb-icon.svg';
   static const homeIcon = '${iconPath}home-icon.svg';
   static const favouriteIcon = '${iconPath}favourite-icon.svg';
   static const searchIcon = '${iconPath}search-icon.svg';
@@ -22,5 +20,7 @@ class AssetsConstants {
   static const cartIcon = '${iconPath}cart-icon.svg';
   static const backIcon = '${iconPath}back-icon.svg';
   static const dialogIcon = '${iconPath}dialog-icon.svg';
-  
+  static const noticeIcon = '${iconPath}notice-icon.svg';  
+  static const deleteIcon = '${iconPath}delete-icon.svg';
+  static const editIcon = '${iconPath}edit-icon.svg'; 
 }

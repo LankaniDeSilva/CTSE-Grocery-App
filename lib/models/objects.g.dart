@@ -73,3 +73,21 @@ Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
       'item': instance.items.map((e) => e.toJson()).toList(),
       'orderState': instance.orderState,
     };
+
+FeedbackModel _$FeedbackModelFromJson(Map<String, dynamic> json) =>
+    FeedbackModel(
+      id: json['id'] as String,
+      userModel: UserModel.fromJson(json['user'] as Map<String, dynamic>),
+      subject: json['subject'] as String,
+      message: json['message'] as String,
+      reply: json['reply'] as String?,
+    );
+
+Map<String, dynamic> _$FeedbackModelToJson(FeedbackModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'user': instance.userModel.toJson(),
+      'subject': instance.subject,
+      'message': instance.message,
+      'reply': instance.reply,
+    };

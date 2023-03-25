@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:grocery_app/screens/main/feedback/feedback.dart';
 import 'package:grocery_app/screens/main/home/home.dart';
 import 'package:grocery_app/screens/main/order/order_screen.dart';
 import 'package:grocery_app/utils/assets_constants.dart';
@@ -17,10 +18,10 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    // Logger().w(widget.uid);
     _screens.addAll({
       const HomeScreen(),
       const OrderScreen(),
+      const FeedbackScreen(),
     });
     super.initState();
   }
@@ -62,6 +63,15 @@ class _MainScreenState extends State<MainScreen> {
               ),
               onTap: () {
                 onItemTap(1);
+              },
+            ),
+            InkWell(
+              child: SvgPicture.asset(
+                AssetsConstants.noticeIcon,
+                color: index == 2 ? AppColors.primaryColor : AppColors.kAsh,
+              ),
+              onTap: () {
+                onItemTap(2);
               },
             ),
           ],

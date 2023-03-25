@@ -151,16 +151,4 @@ class AuthenticationService {
   Future<void> signoutUser() async {
     await auth.signOut();
   }
-
-  //send password reset email
-  Future<void> sendPasswordResetEmail(
-      BuildContext context, String email) async {
-    await auth.sendPasswordResetEmail(email: email).then((value) {
-      //show dialog when the email is sent
-      AnimatedSnackBar.material(
-        "Please check your email",
-        type: AnimatedSnackBarType.success,
-      ).show(context);
-    });
-  }
 }

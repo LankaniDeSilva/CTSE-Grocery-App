@@ -43,7 +43,7 @@ class OrderProvider extends ChangeNotifier {
       double total =
           Provider.of<CartProvider>(context, listen: false).getCartTotal;
 
-      //----get cart items
+      //----get cuser
       UserModel user =
           Provider.of<UserProvider>(context, listen: false).userModel;
 
