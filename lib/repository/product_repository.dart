@@ -61,5 +61,55 @@ class ProductRepository {
       Logger().e(e);
       return [];
     }
+    
+    class ProductProvider extends ChangeNotifier {
+final _productRepository = ProductRepository();
+  //-------product name text controller
+  final _pronameController = TextEditingController();
+
+  //-------description text controller
+  final _descController = TextEditingController();
+
+  //-------price text controller
+  final _priceController = TextEditingController();
+
+  //---------loader state
+  bool _isLoading = false;
+
+  //----get loading state
+  bool get loading => _isLoading;
+
+  //-----change loading state
+  void setLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+  Future<void> addProduct(BuildContext context) async {
+    try {
+      //start the loader
+
+      setLoading(true);
+      await AdminController().saveProduct(
+        context,
+        _pronameController.text,
+        _descController.text,
+        _priceController.text,      );
+
+      //clear text field
+      _pronameController.clear();
+      _priceController.clear();
+      _descController.clear();
+
+      //stop the loader
+
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+      Logger().e(e);
+    }
+  }
+}
+
+
   }
 }
