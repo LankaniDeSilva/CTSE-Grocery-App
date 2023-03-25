@@ -44,13 +44,12 @@ class CartProvider extends ChangeNotifier {
     //--first check wheather adding item is already int the cart list
     if (_cartItemList
         .any((element) => element.cartId == productModel.productId)) {
-
       increaseCartItemCount(productModel);
 
       calSubtotal(productModel);
 
       //------show the snackbar
-       AnimatedSnackBar.material(
+      AnimatedSnackBar.material(
         "Increase Product Amount",
         type: AnimatedSnackBarType.info,
       ).show(context);
@@ -127,9 +126,9 @@ class CartProvider extends ChangeNotifier {
   void removeCartItem(String productId, BuildContext context) {
     _cartItemList.removeWhere((element) => element.cartId == productId);
     AnimatedSnackBar.material(
-        "Remove from the cart",
-        type: AnimatedSnackBarType.error,
-      ).show(context);
+      "Remove from the cart",
+      type: AnimatedSnackBarType.error,
+    ).show(context);
     notifyListeners();
   }
 

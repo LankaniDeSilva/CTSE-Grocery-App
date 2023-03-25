@@ -46,9 +46,10 @@ class _OrderScreenState extends State<OrderScreen> {
                             },
                             separatorBuilder: (context, index) =>
                                 const SizedBox(
-                                  height: 20,
-                                ),
-                            itemCount: value.orders.length);
+                              height: 20,
+                            ),
+                            itemCount: value.orders.length,
+                          );
                   },
                 ),
               ),

@@ -101,7 +101,8 @@ class _OrderTileState extends State<OrderTile> {
                             onPressed: (() => Provider.of<OrderProvider>(
                                     context,
                                     listen: false)
-                                .updateOrder(widget.model.id, context, widget.model.userModel.uid)),
+                                .updateOrder(widget.model.id, context,
+                                    widget.model.userModel.uid)),
                             child: const Text("Urgent Order"),
                           ),
                           ElevatedButton(

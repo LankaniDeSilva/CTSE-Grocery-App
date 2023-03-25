@@ -49,25 +49,28 @@ class _SignupScreenState extends State<SignupScreen> {
                   const SizedBox(height: 20.0),
                   CustomTextField(
                     hintText: "Name",
-                    controller: Provider.of<SignupProvider>(context).nameController,
+                    controller:
+                        Provider.of<SignupProvider>(context).nameController,
                   ),
                   const SizedBox(height: 8.0),
                   CustomTextField(
                     hintText: "Email",
-                    controller: Provider.of<SignupProvider>(context).emailController,
+                    controller:
+                        Provider.of<SignupProvider>(context).emailController,
                   ),
                   const SizedBox(height: 16.0),
                   CustomTextField(
                     isObscure: true,
                     hintText: "Password",
-                    controller: Provider.of<SignupProvider>(context).passwordController,
+                    controller:
+                        Provider.of<SignupProvider>(context).passwordController,
                   ),
                   const SizedBox(height: 16.0),
                   Align(
                     alignment: Alignment.centerRight,
                     child: InkWell(
-                      onTap: () =>
-                          UtilFunctions.navigateTo(context, const LoginScreen()),
+                      onTap: () => UtilFunctions.navigateTo(
+                          context, const LoginScreen()),
                       child: const CustomText(
                         text: "Already have an account?",
                         fontSize: 14.0,
@@ -82,11 +85,15 @@ class _SignupScreenState extends State<SignupScreen> {
                     text: 'Register',
                   ),
                   const SizedBox(height: 18),
-                  const CustomText(text: "or", fontSize: 14,),
+                  const CustomText(
+                    text: "or",
+                    fontSize: 14,
+                  ),
                   const SizedBox(height: 30),
                   CustomButton(
                     onTap: () {
-                      Provider.of<AuthProvider>(context, listen: false).googleAuth();
+                      Provider.of<AuthProvider>(context, listen: false)
+                          .googleAuth();
                     },
                     text: 'Signup with google',
                   ),
