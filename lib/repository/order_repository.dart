@@ -6,20 +6,20 @@ import 'package:logger/logger.dart';
 import '../models/objects.dart';
 
 class OrderRepository {
-  //-- create the product collection
+  //-- create the order collection
   CollectionReference orders = FirebaseFirestore.instance.collection('orders');
 
-  //----------fetch products
+  //----------fetch orders
   Future<List<OrderModel>> fetchOrders(String uid) async {
     try {
       //----------query for fetching all the order list according to the user id
       QuerySnapshot snapshot =
           await orders.where("user.uid", isEqualTo: uid).get();
 
-      //----------product list
+      //----------order list
       List<OrderModel> orderList = [];
 
-      //----------mapping fetch data to product model and store in product list
+      //----------mapping fetch data to order model and store in order list
       for (var element in snapshot.docs) {
         Logger().w(element.data() as Map<String, dynamic>);
         //-----mapping to single order model
@@ -37,7 +37,7 @@ class OrderRepository {
     }
   }
 
-  //------------Sign up user in firestore cloud
+  //------------Save order in firestore cloud
   Future<void> saveOrder(
       UserModel user, double total, List<CartItemModel> items) async {
     //-getting an unique document ID
@@ -81,8 +81,7 @@ class OrderRepository {
     }
   }
 
-  Future<void> updateOrder(
-      String orderId, BuildContext context) {
+  Future<void> updateOrder(String orderId, BuildContext context) {
     return orders
         .doc(orderId)
         .update({'orderState': 'Urgent'})

@@ -29,7 +29,7 @@ class OrderProvider extends ChangeNotifier {
   //Controller for status
   final _statusController = TextEditingController();
 
-     //----getter for status controller
+  //----getter for status controller
   TextEditingController get statusController => _statusController;
 
   //------start creating the order
@@ -114,7 +114,8 @@ class OrderProvider extends ChangeNotifier {
   }
 
   //REMOVE ORDER
-  Future<void> removeOrder(String orderid, BuildContext context, String uid) async {
+  Future<void> removeOrder(
+      String orderid, BuildContext context, String uid) async {
     try {
       await _orderReository.deleteOrder(orderid, context);
       fetchOrders(uid);
@@ -124,13 +125,14 @@ class OrderProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> updateOrder(String orderId, BuildContext context, String uid ) async {
-    try{
+  //update the order
+  Future<void> updateOrder(
+      String orderId, BuildContext context, String uid) async {
+    try {
       await _orderReository.updateOrder(orderId, context);
       fetchOrders(uid);
       notifyListeners();
-    }
-    catch (e) {
+    } catch (e) {
       Logger().e(e);
     }
   }

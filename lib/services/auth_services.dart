@@ -144,23 +144,13 @@ class AuthenticationService {
         "Cannot login due to an error",
         type: AnimatedSnackBarType.error,
       ).show(context);
+      Logger().e(e);
     }
   }
 
   //--------sign out function
   Future<void> signoutUser() async {
-    await auth.signOut();
-  }
-
-  //send password reset email
-  Future<void> sendPasswordResetEmail(
-      BuildContext context, String email) async {
-    await auth.sendPasswordResetEmail(email: email).then((value) {
-      //show dialog when the email is sent
-      AnimatedSnackBar.material(
-        "Please check your email",
-        type: AnimatedSnackBarType.success,
-      ).show(context);
-    });
+    await GoogleSignIn().disconnect();
+    await auth.signOut().catchError((e) => Logger().e(e));
   }
 }

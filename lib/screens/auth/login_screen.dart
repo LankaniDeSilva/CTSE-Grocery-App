@@ -49,20 +49,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 20.0),
                   CustomTextField(
                     hintText: "Email",
-                    controller: Provider.of<LoginProvider>(context).emailController,
+                    controller:
+                        Provider.of<LoginProvider>(context).emailController,
                   ),
                   const SizedBox(height: 16.0),
                   CustomTextField(
                     isObscure: true,
                     hintText: "Password",
-                    controller: Provider.of<LoginProvider>(context).passwordController,
+                    controller:
+                        Provider.of<LoginProvider>(context).passwordController,
                   ),
                   const SizedBox(height: 16.0),
                   Align(
                     alignment: Alignment.centerRight,
                     child: InkWell(
-                      onTap: () =>
-                          UtilFunctions.navigateTo(context, const SignupScreen()),
+                      onTap: () => UtilFunctions.navigateTo(
+                          context, const SignupScreen()),
                       child: const CustomText(
                         text: "Do not have an account?",
                         fontSize: 14.0,
@@ -72,16 +74,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 26),
                   CustomButton(
                     onTap: () {
-                      Provider.of<LoginProvider>(context, listen: false).startLogin(context);
+                      Provider.of<LoginProvider>(context, listen: false)
+                          .startLogin(context);
                     },
                     text: 'Login',
                   ),
                   const SizedBox(height: 18),
-                  const CustomText(text: "or", fontSize: 14,),
+                  const CustomText(
+                    text: "or",
+                    fontSize: 14,
+                  ),
                   const SizedBox(height: 30),
                   CustomButton(
                     onTap: () {
-                      Provider.of<AuthProvider>(context, listen: false).googleAuth();
+                      Provider.of<AuthProvider>(context, listen: false)
+                          .googleAuth();
                     },
                     text: 'Signin with google',
                   ),

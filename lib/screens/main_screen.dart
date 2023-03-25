@@ -14,7 +14,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   @override
   void initState() {
     // Logger().w(widget.uid);
