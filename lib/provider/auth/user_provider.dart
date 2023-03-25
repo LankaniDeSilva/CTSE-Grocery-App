@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:grocery_app/provider/feedback/feedback_provider.dart';
 import 'package:grocery_app/provider/order/order_provider.dart';
 import 'package:grocery_app/provider/product/product_provider.dart';
 import 'package:grocery_app/screens/auth/login_screen.dart';
@@ -64,6 +65,9 @@ class UserProvider extends ChangeNotifier {
         // ignore: use_build_context_synchronously
         Provider.of<OrderProvider>(context, listen: false)
             .fetchOrders(user.uid);
+
+        // ignore: use_build_context_synchronously
+        Provider.of<FeedbackProvider>(context, listen: false).fetchFeedback();
 
         // ignore: use_build_context_synchronously
         UtilFunctions.navigate(context, const MainScreen());

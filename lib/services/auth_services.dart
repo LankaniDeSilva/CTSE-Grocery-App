@@ -150,7 +150,9 @@ class AuthenticationService {
 
   //--------sign out function
   Future<void> signoutUser() async {
+
     await GoogleSignIn().disconnect();
     await auth.signOut().catchError((e) => Logger().e(e));
+
   }
 }

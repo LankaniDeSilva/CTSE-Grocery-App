@@ -80,7 +80,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   const SizedBox(height: 26),
                   CustomButton(
                     onTap: () {
-                      Provider.of<SignupProvider>(context).startSignup(context);
+                      Provider.of<SignupProvider>(context, listen: false).startSignup(context);
                     },
                     text: 'Register',
                   ),
