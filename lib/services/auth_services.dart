@@ -144,11 +144,15 @@ class AuthenticationService {
         "Cannot login due to an error",
         type: AnimatedSnackBarType.error,
       ).show(context);
+      Logger().e(e);
     }
   }
 
   //--------sign out function
   Future<void> signoutUser() async {
-    await auth.signOut();
+
+    await GoogleSignIn().disconnect();
+    await auth.signOut().catchError((e) => Logger().e(e));
+
   }
 }

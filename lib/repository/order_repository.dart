@@ -81,8 +81,7 @@ class OrderRepository {
     }
   }
 
-  Future<void> updateOrder(
-      String orderId, BuildContext context) {
+  Future<void> updateOrder(String orderId, BuildContext context) {
     return orders
         .doc(orderId)
         .update({'orderState': 'Urgent'})

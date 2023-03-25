@@ -11,7 +11,6 @@ import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/objects.dart';
-import '../../screens/main/home/home.dart';
 
 class UserProvider extends ChangeNotifier {
   //---------User Model
@@ -64,7 +63,8 @@ class UserProvider extends ChangeNotifier {
         Provider.of<ProductProvider>(context, listen: false).fetchProducts();
 
         // ignore: use_build_context_synchronously
-        Provider.of<OrderProvider>(context, listen: false).fetchOrders(user.uid);
+        Provider.of<OrderProvider>(context, listen: false)
+            .fetchOrders(user.uid);
 
         // ignore: use_build_context_synchronously
         Provider.of<FeedbackProvider>(context, listen: false).fetchFeedback();

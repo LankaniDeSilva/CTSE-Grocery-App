@@ -26,9 +26,11 @@ class HomeScreen extends StatelessWidget {
                   Row(
                     children: [
                       const CartButtonWidget(),
-                      IconButton(onPressed: (){
-                        AuthenticationService().signoutUser();
-                      }, icon: const Icon(Icons.logout))
+                      IconButton(
+                          onPressed: () {
+                            AuthenticationService().signoutUser();
+                          },
+                          icon: const Icon(Icons.logout))
                     ],
                   ),
                 ],
