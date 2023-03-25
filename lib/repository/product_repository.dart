@@ -9,6 +9,29 @@ class ProductRepository {
   //-- create the product collection
   CollectionReference products =
       FirebaseFirestore.instance.collection('products');
+  
+    //-----------save Product function---
+  Future<void> saveProduct(
+    BuildContext context,
+    String productName,
+    String description,
+    String price,
+  ) async {
+    try {
+      //-getting an unique document ID
+      String docid = products.doc().id;
+
+      //-saving the producy data in cloud firestore
+      await products.doc(docid).set({
+        "productId": docid,
+        "productName": productName,
+        "description": description,
+        "price": double.parse(price),
+        "image": “”,
+      });
+    } catch (e) {
+     Logger().e(e.toString())
+    }
 
   //----------fetch products
   Future<List<ProductModel>> getProducts() async {
